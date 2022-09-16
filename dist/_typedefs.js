@@ -3,8 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Example_1 = __importDefault(require("./Example"));
+const index_1 = __importDefault(require("./graphql/Example/index"));
+const Acronym_1 = __importDefault(require("./graphql/Acronym"));
 exports.default = [
-    Example_1.default.typedefs
+    index_1.default.typedefs,
+    Acronym_1.default.typedefs
 ];
 //# sourceMappingURL=_typedefs.js.map

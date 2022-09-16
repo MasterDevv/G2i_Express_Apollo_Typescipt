@@ -1,6 +1,6 @@
 import merge from 'lodash.merge';
-import Example from './graphql/Example/index';
+import Acronym from './graphql/Acronym/index';
 
-export default merge(
-    Example.resolvers
-)
+export default merge([
+    Acronym.resolvers
+])

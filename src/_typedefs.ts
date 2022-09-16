@@ -1,5 +1,5 @@
-import Example from "./graphql/Example/index";
+import Acronym from "./graphql/Acronym/index";
 
 export default [
-    Example.typedefs
+    Acronym.typedefs
 ]
