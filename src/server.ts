@@ -1,5 +1,7 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
+import mongoose from 'mongoose';
+import { mongodUrl } from './config'
 import _resolvers from './_resolvers';
 import _typedefs from './_typedefs';
 
@@ -15,6 +17,11 @@ export const server: ApolloServer = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
+
+mongoose
+  .connect(process.env.mongodbUrl || mongodUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log("mongoDB is err, ", err));
 
 const PORT = process.env.PORT || 4000;
 
