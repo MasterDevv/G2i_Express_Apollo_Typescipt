@@ -15,6 +15,7 @@ git clone https://github.com/Satan199787/G2i_Express_Apollo_Typescipt.git
 
 cd G2i-Express-Apollo-Typescript
 ```
+## Interface(Query and Mutation)
 type Query {
     """
     getAcronyms Func results does not need params(return String)
