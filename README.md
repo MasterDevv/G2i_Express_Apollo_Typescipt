@@ -30,6 +30,7 @@ type Query {
       search: String
     ): String!
 }
+
 type Mutation {
   """
   addAcronym is function for create acronym. (return String)
@@ -41,10 +42,12 @@ type Mutation {
     "add Acronym's definition.(String)"
     definition: String!
   ): String!
+  
   """
   updateAcronym is function for update acronym. (return String)
   F.EX: updateAcronym(acronym: "one", definition: "one is one.")
   """
+  
   updateAcronym(
     "add Acronym.(String)"
     acronym: String!, 
