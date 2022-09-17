@@ -16,6 +16,7 @@ git clone https://github.com/Satan199787/G2i_Express_Apollo_Typescipt.git
 cd G2i-Express-Apollo-Typescript
 ```
 ## Interface(Query and Mutation)
+Note: You can show type detail about params in graphql playground.
 ```
 Query
   """
@@ -42,7 +43,10 @@ Mutation
   
   """
   updateAcronym is function for update acronym. (return String)
-  F.EX: updateAcronym(acronym: "one", definition: "one is one.")
+  F.Example: updateAcronym(acronym: "one", definition: "one is one.")
+  Note: header {
+    "authorization": true
+  }
   """  
   updateAcronym(
     acronym: String!, 
@@ -52,6 +56,9 @@ Mutation
   """
   deleteAcronym is function for delete acronym. (return String)
   F.EX: deleteAcronym(acronym: "one")
+  Note: header {
+    "authorization": true
+  }
   """
   deleteAcronym(
     acronym: String!
