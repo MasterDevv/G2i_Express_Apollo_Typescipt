@@ -13,9 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Acronym_1 = __importDefault(require("../../model/Acronym"));
+const acronymSchema_1 = require("../../schemas/acronymSchema");
+const Validation_1 = __importDefault(require("../../middleware/Validation"));
 const resolvers = {
     Query: {
         getAcronyms: (__, args) => __awaiter(void 0, void 0, void 0, function* () {
+            yield Validation_1.default(acronymSchema_1.queryGetAcronymSchema, args);
             const { from, limit, search } = args;
             let getData;
             try {
@@ -37,6 +40,7 @@ const resolvers = {
     },
     Mutation: {
         addAcronym: (__, args) => __awaiter(void 0, void 0, void 0, function* () {
+            yield Validation_1.default(acronymSchema_1.mutationAddorUpdateAcronymSchema, args);
             const { acronym, definition } = args;
             let createAcronym;
             if (yield Acronym_1.default.findOne({ acronym })) {
@@ -56,6 +60,7 @@ const resolvers = {
             });
         }),
         updateAcronym: (__, args, authInfo) => __awaiter(void 0, void 0, void 0, function* () {
+            yield Validation_1.default(acronymSchema_1.mutationAddorUpdateAcronymSchema, args);
             if (!authInfo.Authorization) {
                 throw new Error('Not Permission.');
             }
@@ -79,6 +84,7 @@ const resolvers = {
             });
         }),
         deleteAcronym: (__, args, authInfo) => __awaiter(void 0, void 0, void 0, function* () {
+            yield Validation_1.default(acronymSchema_1.mutationDelAcronymSchema, args);
             if (!authInfo.Authorization) {
                 throw new Error('Not Permission.');
             }

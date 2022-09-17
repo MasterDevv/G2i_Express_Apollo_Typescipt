@@ -8,15 +8,19 @@ const apollo_server_express_1 = require("apollo-server-express");
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = require("./config");
-const _resolvers_1 = __importDefault(require("./_resolvers"));
-const _typedefs_1 = __importDefault(require("./_typedefs"));
+const _resolvers_1 = __importDefault(require("./graphql/_resolvers"));
+const _typedefs_1 = __importDefault(require("./graphql/_typedefs"));
 const app = express_1.default();
 app.use(express_1.default.json());
 exports.server = new apollo_server_express_1.ApolloServer({
     typeDefs: _typedefs_1.default,
     resolvers: _resolvers_1.default,
-    playground: true,
     introspection: true,
+    playground: {
+        settings: {
+            'editor.cursorShape': 'block',
+        }
+    },
     context: ({ req }) => {
         let Authorization = false;
         if (req.headers.authorization) {
