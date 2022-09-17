@@ -17,6 +17,13 @@ exports.server = new apollo_server_express_1.ApolloServer({
     resolvers: _resolvers_1.default,
     playground: true,
     introspection: true,
+    context: ({ req }) => {
+        let Authorization = false;
+        if (req.headers.authorization) {
+            Authorization = true;
+        }
+        return { Authorization };
+    }
 });
 exports.server.applyMiddleware({ app });
 mongoose_1.default

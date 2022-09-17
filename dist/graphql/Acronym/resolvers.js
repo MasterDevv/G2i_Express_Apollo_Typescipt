@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Acronym_1 = __importDefault(require("../../model/Acronym"));
 const resolvers = {
     Query: {
-        getAcronyms: (args) => __awaiter(void 0, void 0, void 0, function* () {
+        getAcronyms: (__, args) => __awaiter(void 0, void 0, void 0, function* () {
             const { from, limit, search } = args;
             let getData;
             try {
@@ -32,6 +32,70 @@ const resolvers = {
             return JSON.stringify({
                 success: true,
                 getData
+            });
+        })
+    },
+    Mutation: {
+        addAcronym: (__, args) => __awaiter(void 0, void 0, void 0, function* () {
+            const { acronym, definition } = args;
+            let createAcronym;
+            if (yield Acronym_1.default.findOne({ acronym })) {
+                throw new Error('Acronym already Exists.');
+            }
+            try {
+                createAcronym = yield Acronym_1.default.create({
+                    acronym, definition
+                });
+            }
+            catch (error) {
+                throw new Error("Mutation's addAcrnym Server Error.");
+            }
+            return JSON.stringify({
+                success: true,
+                createAcronym
+            });
+        }),
+        updateAcronym: (__, args, authInfo) => __awaiter(void 0, void 0, void 0, function* () {
+            if (!authInfo.Authorization) {
+                throw new Error('Not Permission.');
+            }
+            const { acronym, definition } = args;
+            let updateAcronym;
+            if (!(yield Acronym_1.default.findOne({ acronym }))) {
+                throw new Error('Acronym does not Exist.');
+            }
+            try {
+                updateAcronym = yield Acronym_1.default.findOneAndUpdate({ acronym: acronym }, {
+                    acronym,
+                    definition
+                });
+            }
+            catch (error) {
+                throw new Error("Mutation's updateAcrnym Server Error.");
+            }
+            return JSON.stringify({
+                success: true,
+                updateAcronym
+            });
+        }),
+        deleteAcronym: (__, args, authInfo) => __awaiter(void 0, void 0, void 0, function* () {
+            if (!authInfo.Authorization) {
+                throw new Error('Not Permission.');
+            }
+            const { acronym } = args;
+            let delAcronym;
+            if (!(yield Acronym_1.default.findOne({ acronym }))) {
+                throw new Error('Acronym does not Exist.');
+            }
+            try {
+                delAcronym = yield Acronym_1.default.findOneAndRemove({ acronym: acronym });
+            }
+            catch (error) {
+                throw new Error("Mutation's updateAcrnym Server Error.");
+            }
+            return JSON.stringify({
+                success: true,
+                delAcronym
             });
         })
     }
