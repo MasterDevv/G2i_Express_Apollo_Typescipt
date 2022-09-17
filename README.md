@@ -18,11 +18,11 @@ cd G2i-Express-Apollo-Typescript
 ## Interface(Query and Mutation)
 Note: You can show type detail about params in graphql playground.
 ```
-Query
-  """
+Query:
   getAcronyms Func results does not need params(return String)
-  F.EX: getAcronyms(from: 1, limit: 10, search: "one")
-  """
+
+  Example: getAcronyms(from: 1, limit: 10, search: "one")
+
   getAcronyms(
     from: Int!, 
     limit: Int!, 
@@ -31,35 +31,36 @@ Query
 ```
 
 ```
-Mutation 
-  """
-  addAcronym is function for create acronym. (return String)
-  F.EX: addAcronym(acronym: "one", definition: "one is one.")
-  """
+Mutation:
+  1. addAcronym is function for create acronym. (return String)
+
+  Example: addAcronym(acronym: "one", definition: "one is one.")
+
   addAcronym(
     acronym: String!, 
     definition: String!
   ): String!
   
-  """
-  updateAcronym is function for update acronym. (return String)
-  F.Example: updateAcronym(acronym: "one", definition: "one is one.")
+  2. updateAcronym is function for update acronym. (return String)
+
+  Example: updateAcronym(acronym: "one", definition: "one is one.")
   Note: header {
     "authorization": true
   }
-  """  
+
   updateAcronym(
     acronym: String!, 
     definition: String!
   ): String!
 
-  """
-  deleteAcronym is function for delete acronym. (return String)
-  F.EX: deleteAcronym(acronym: "one")
+  
+  3. deleteAcronym is function for delete acronym. (return String)
+  
+  Example: deleteAcronym(acronym: "one")
   Note: header {
     "authorization": true
   }
-  """
+  
   deleteAcronym(
     acronym: String!
   ): String
