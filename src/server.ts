@@ -14,6 +14,14 @@ export const server: ApolloServer = new ApolloServer({
   resolvers: _resolvers,
   playground: true,
   introspection: true,
+  context: ({ req }) => {
+    let isAuth = false;
+    if(req.headers.authorization) {
+        isAuth = true;
+    }
+    // console.log("isAuth is ", isAuth);
+    return isAuth;
+  }
 });
 
 server.applyMiddleware({ app });

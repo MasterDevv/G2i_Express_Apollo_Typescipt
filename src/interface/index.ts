@@ -8,6 +8,10 @@ export interface IAcornym {
     definition: string
 }
 
+export interface IAuth {
+    authorization: boolean
+}
+
 
 // argument interfaces
 export interface IGrgsGetAcornym {

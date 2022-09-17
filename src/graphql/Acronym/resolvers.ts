@@ -1,5 +1,5 @@
 import Acronym from '../../model/Acronym'
-import { IGrgsAddorUpdateAcornym, IGrgsGetAcornym, IGrgsDelAcornym } from '../../interface'
+import { IGrgsAddorUpdateAcornym, IGrgsGetAcornym, IGrgsDelAcornym, IAuth } from '../../interface'
 
 const resolvers = {
     Query: {
@@ -44,10 +44,10 @@ const resolvers = {
         },
 
         // update acronym
-        updateAcronym: async (__:void, args: IGrgsAddorUpdateAcornym) => {
-            // if(!authorizationInfo.isAuth) {
-            //     throw new Error('Not Permission.');
-            // }
+        updateAcronym: async (__:void, args: IGrgsAddorUpdateAcornym, authorization: IAuth) => {
+            if(!authorization.authorization) {
+                throw new Error('Not Permission.');
+            }
             const { acronym, definition } = args;
             let updateAcronym;
             if (!await Acronym.findOne({ acronym })) {
@@ -70,10 +70,10 @@ const resolvers = {
         },
 
         // delete acronym
-        deleteAcronym: async (__:void, args: IGrgsDelAcornym) => {
-            // if(!authorizationInfo.isAuth) {
-            //     throw new Error('Not Permission.');
-            // } 
+        deleteAcronym: async (__:void, args: IGrgsDelAcornym,authorization: IAuth) => {
+            if(!authorization.authorization) {
+                throw new Error('Not Permission.');
+            } 
             const { acronym } = args;
             let delAcronym;
             if (!await Acronym.findOne({ acronym })) {
