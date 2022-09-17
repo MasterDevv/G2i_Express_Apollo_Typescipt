@@ -44,8 +44,8 @@ const resolvers = {
         },
 
         // update acronym
-        updateAcronym: async (__:void, args: IGrgsAddorUpdateAcornym, authorization: IAuth) => {
-            if(!authorization.authorization) {
+        updateAcronym: async (__:void, args: IGrgsAddorUpdateAcornym, authInfo: IAuth) => {
+            if(!authInfo.Authorization) {
                 throw new Error('Not Permission.');
             }
             const { acronym, definition } = args;
@@ -70,8 +70,8 @@ const resolvers = {
         },
 
         // delete acronym
-        deleteAcronym: async (__:void, args: IGrgsDelAcornym,authorization: IAuth) => {
-            if(!authorization.authorization) {
+        deleteAcronym: async (__:void, args: IGrgsDelAcornym, authInfo: IAuth) => {
+            if(!authInfo.Authorization) {
                 throw new Error('Not Permission.');
             } 
             const { acronym } = args;

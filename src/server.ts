@@ -15,12 +15,11 @@ export const server: ApolloServer = new ApolloServer({
   playground: true,
   introspection: true,
   context: ({ req }) => {
-    let isAuth = false;
+    let Authorization = false;
     if(req.headers.authorization) {
-        isAuth = true;
+      Authorization = true;
     }
-    // console.log("isAuth is ", isAuth);
-    return isAuth;
+    return {Authorization};
   }
 });
 

@@ -9,7 +9,7 @@ export interface IAcornym {
 }
 
 export interface IAuth {
-    authorization: boolean
+    Authorization: boolean
 }
 
 
