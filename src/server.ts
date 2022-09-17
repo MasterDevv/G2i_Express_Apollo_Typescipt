@@ -12,8 +12,12 @@ app.use(express.json());
 export const server: ApolloServer = new ApolloServer({
   typeDefs: _typedefs,
   resolvers: _resolvers,
-  playground: true,
   introspection: true,
+  playground: {
+    settings: {
+      'editor.cursorShape': 'block',
+    }
+  },
   context: ({ req }) => {
     let Authorization = false;
     if(req.headers.authorization) {
