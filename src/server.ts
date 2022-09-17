@@ -2,8 +2,8 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import mongoose from 'mongoose';
 import { mongodUrl } from './config'
-import _resolvers from './_resolvers';
-import _typedefs from './_typedefs';
+import _resolvers from './graphql/_resolvers';
+import _typedefs from './graphql/_typedefs';
 
 const app = express();
 

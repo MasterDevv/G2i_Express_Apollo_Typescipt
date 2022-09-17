@@ -1,5 +1,5 @@
 import merge from 'lodash.merge';
-import Acronym from './graphql/Acronym/index';
+import Acronym from './Acronym/index';
 
 export default merge([
     Acronym.resolvers
